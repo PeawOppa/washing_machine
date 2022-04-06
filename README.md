@@ -59,5 +59,5 @@ const washingMachine = (nodeJS) => {
     console.log(`สวัสดีค้าบบบบบบบ ${nodeJS}..., แก๋ว !!!`)
 }
 
-washingMachine("เท่าสมาชิกชมรม คนชอบ")
+washingMachine("ท่านสมาชิกชมรม คนชอบ")
 ```
