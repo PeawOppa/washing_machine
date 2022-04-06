@@ -5,7 +5,8 @@ const request = require('request');
 require('dotenv').config();
 const url_line_notification = "https://notify-api.line.me/api/notify";
 
-cron.schedule('* * * * * *', () => {
+// Running a task every 10 second
+cron.schedule('*/10 * * * * *', () => {
     let dateNow = new Date();
     let diffStart = dateNow.getTime();
     let dateCut = dateNow.toISOString().split('.')[0];
@@ -31,7 +32,7 @@ cron.schedule('* * * * * *', () => {
                     bearer: process.env.TOKEN,
                 },
                 form: {
-                    message: 'เครื่องซักผ้าทำงานใกล้เสร็จแล้ว ไปเอาผ้ากันเถอะ !'
+                    message: `${washMachines[i].name}ทำงานใกล้เสร็จแล้ว ไปเอาผ้ากันเถอะ !`
                 },
             }, (err, httpResponse, body) => {
                 if (err) {

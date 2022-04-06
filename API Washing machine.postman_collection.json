@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "a4008371-bd9e-4e6d-bdee-086e19c3d0d9",
+		"name": "API Washing machine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all washing machine",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/washing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get washing machine",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/washing/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create washing machine",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"เครื่องซักผ้า 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/washing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update washing machine",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"เครื่องซักผ้า 888\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/washing/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete washing machine",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/washing/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert coin",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"coin\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/washing/insert_coin/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing",
+						"insert_coin",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update time",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/washing/update_time/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing",
+						"update_time",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset to default",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/washing/reset/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"washing",
+						"reset",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -17,6 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 router.apiRoutes(app);
 router.webRoutes(app);
 
+app.use((req, res) => { res.status(404).json({ message: `${req.originalUrl} not found.` }) });
+
 try {
     app.listen(config.port, config.host, () => { console.log(`Server started on : http://${config.host}:${config.port}`) });
 } catch(err) {
