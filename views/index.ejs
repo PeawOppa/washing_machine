@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washing Machine</title>
+    <style>
+        body {
+            margin: 1rem 0 0 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 1em;
+            padding: 1em;
+        }
+
+        .washmc {
+            background-color: #D5E2EF;
+            border: 1px solid rgba(0,0,0,.1);
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .washmc > .header {
+            width: 50%;
+            background-color: #E7F8D8;
+            border: 1px solid rgba(0,0,0,.1);
+            position: absolute;
+            top: -1.3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0.5rem;
+            border-radius: 30px;
+        }
+
+        .washmc > .content {
+            margin-top: 1rem;
+        }
+
+        .washmc > .footer {
+            padding: 1rem;
+        }
+
+        .washmc > .footer > .coin button {
+            background-color: #FFE7E0;
+            padding: 1rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .washmc > .footer > .coin-in-washmc {
+            display: flex;
+            flex-direction: column;
+            padding-top: 1rem;
+        }
+
+        .washmc > .footer > .coin-in-washmc span {
+            width: 100%;
+            background-color: #FFFDE3;
+            margin-top: 0.5rem;
+            padding: 1rem 0;
+            border-radius: 20px;
+        }
+
+        .washmc > .footer > .status {
+            display: none;
+        }
+        
+        .washmc > .footer > .status > div {
+            width: 100%;
+            background-color: #FFFDE3;
+            margin-top: 0.5rem;
+            padding: 1rem 0;
+            border-radius: 20px;
+            font-size: 20px;
+        }
+
+        .container-empty {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .empty {
+            width: 50%;
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid rgba(0,0,0,.1);
+            border-radius: 20px;
+            text-align: center;
+            background-color: #eee;
+            font-size: 2em;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media only screen and (max-width: 1000px) and (min-width: 601px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <% if(washMachines.length > 0) { %>
+        <div class="container">
+            <% Object.values(washMachines).forEach((item) => { %>
+                <div class="washmc">
+                    <div class="header">
+                        <%= item.name %>
+                    </div>
+                    <div class="content">
+                        <img src="/images/washmc/washmc.png" width="250px" height="250px" alt="เครื่องซักผ้า">
+                    </div>
+                    <div class="footer">
+                        <div class="coin" id="coin-<%= item.id %>">
+                            <button class="insert-coin" onclick="insertCoin(1, '<%= item.id %>')">1</button>
+                            <button class="insert-coin" onclick="insertCoin(5, '<%= item.id %>')">5</button>
+                            <button class="insert-coin" onclick="insertCoin(10, '<%= item.id %>')">10</button>
+                        </div>
+                        <div class="coin-in-washmc" id="coin-in-washmc-<%= item.id %>">
+                            <span><strong><u>ใส่เหรียญจำนวน 30 บาท</u></strong></span>
+                            <span>ตอนนี้มี : <span id="current-coin-<%= item.id %>"><%= item.coin %></span> บาท</span>
+                        </div>
+                        <div class="status" id="status-<%= item.id %>"></div>
+                    </div>
+                </div>
+            <% }) %>
+         </div>
+    <% } else { %>
+        <div class="container-empty">
+            <div class="empty">
+                ไม่มีเครื่องซักผ้าให้ใช้บริการ
+            </div>
+        </div>
+    <% } %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        $(function(){
+            var timer = [];
+
+            insertCoin = (coin, id) => {
+                let currentCoin = parseInt($('#current-coin-'+id).html());
+                currentCoin += coin;
+                axios.put(`/api/washing/insert_coin/${id}`, { coin: currentCoin }).then((res) => {
+                    $('#current-coin-'+id).html(currentCoin);
+                });
+            };
+            
+            $('span[id*="current-coin"]').on('DOMSubtreeModified', function(){
+                if($(this).html() != ''){
+                    let coin = parseInt($(this).html());
+                    let str_id = $(this).attr('id');
+                    let id = str_id.substring(13);
+
+                    if(coin >= 30){
+                        axios.get(`/api/washing/update_time/${id}`).then((res) => {
+                            $('#coin-'+id).css('display', 'none');
+                            $('#coin-in-washmc-'+id).css('display', 'none');
+                            $('#status-'+id).css('display', 'block');
+                            axios.get(`/api/washing`).then((res) => {
+                                washMachines = res.data;
+                            }).finally(() => {
+                                $(this).html(0);
+                                calculateTime();
+                            });
+                        });                     
+                    }
+                }
+            });
+
+            checkStatus = () => {
+                Object.values(washMachines).forEach((item) => {
+                    if(item.status){
+                        $('#coin-'+item.id).css('display', 'none');
+                        $('#coin-in-washmc-'+item.id).css('display', 'none');
+                        $('#status-'+item.id).css('display', 'block');
+                    } else {
+                        $('#coin-'+item.id).css('display', 'block');
+                        $('#coin-in-washmc-'+item.id).css('display', 'flex');
+                        $('#status-'+item.id).css('display', 'none');
+                        $('#status-'+item.id).html('');
+                    }
+                });
+            };
+
+            calculateTime = () => {
+                let startTime = new Date().getTime();
+                for (let i = 0; i < washMachines.length; i++) {
+                    if (washMachines[i].end_at == null) { continue; }
+                    let endTime = new Date(washMachines[i].end_at).getTime();
+                    let diff = endTime - startTime;
+                    if(diff >= 0){
+                        let diff_as_date = new Date(diff);
+                        timer[washMachines[i].id] = diff_as_date.getMinutes()+":"+diff_as_date.getSeconds();
+                        // timer[washMachines[i].id] = diff_as_date.getMinutes();
+                        $('#status-'+washMachines[i].id).html(`<div>
+                                เครื่องซักผ้ากำลังทำงาน<br><br>
+                                จะซักเสร็จภายใน ${timer[washMachines[i].id]} นาที
+                        </div>`);
+                    } else {
+                        axios.get(`/api/washing/reset/${washMachines[i].id}`).then((res) => {
+                            washMachines = res.data;
+                        }).finally(() => {
+                            checkStatus();
+                        });
+                    }             
+                }  
+            };
+
+            addTimer = async () => {
+                return await new Promise((resolve) => {
+                    Object.values(washMachines).forEach((item) => {
+                        timer[item.id] = 0;
+                    });
+                    resolve(true);
+                });
+            }
+
+            addTimer();
+            checkStatus();
+            setInterval(calculateTime, 1000);
+        });
+    </script>
+    <% if(washMachines.length > 0) { %>
+        <script>
+            var washMachines = JSON.parse('<%- JSON.stringify(washMachines) %>');
+        </script>
+    <% } else { %>
+        <script>
+            var washMachines = [];
+        </script>
+    <% } %>
+</body>
+</html>
