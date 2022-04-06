@@ -36,7 +36,7 @@ npm i
 npm start
 ```
 
-# **API**
+# **Routes**
 
 Method | URI | Description
 | ----- | ----- | ----- |
