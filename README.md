@@ -6,27 +6,27 @@
 
 Dependencies|Description
 |:-----:| ----- |
-**EJS** | ใช้ EJS ในการทำ Views/Template (View Engine) เพราะ Project มีขนาดเล็ก จึงไม่จำเป้นที่จะต้องใช้ Front-end framework |
-**Express** | ใช้ module ต่างๆ ใน express เพื่อให้ง่ายต่อการพัฒนา server |
+**EJS** | ใช้ EJS ในการทำ Views/Template (View Engine) เพราะ Project มีขนาดเล็ก จึงไม่จำเป็นที่จะต้องใช้ Front-end framework |
+**Express** | ใช้ Module ต่างๆ ใน Express เพื่อให้ง่ายต่อการพัฒนา Server |
 **UUID** | ใช้ สร้าง Unique ID สำหรับ Database json file |
-**Dotenv** | ใช้สำหรับ get environment variables |
+**Dotenv** | ใช้สำหรับ Get environment variables |
 **Nodemon** | ใช้ Nodemon สำหรับ Development เท่านั้น |
-**Node-cron** | ใช้ Node cron เพื่อ run schedule |
+**Node-cron** | ใช้ Node cron เพื่อ Run schedule |
 **Request** | ใช้สร้าง Request สำหรับทำ Line notification |
 
 # **Database**
 
 [![JSON](https://i0.wp.com/saixiii.com/wp-content/uploads/2017/04/json-logo.png?w=512&ssl=1)](https://www.json.org/json-en.html)
 
-ใช้ JSON ไฟล์ในการเก็บข้อมูลแทนการใช้ DB แล้วใช้การ Read, Write file ในการเปลี่ยนแปลงข้อมูล *(ใช้เป็น json file เก็บข้อมูลทั้งหมด เพราะ Project มีขนาดเล็ก จึงไม่จำเป้นที่จะต้องใช้ RDB, NoSQL ให้ยุ่งยาก)*
+ใช้ JSON ไฟล์ในการเก็บข้อมูลแทนการใช้ DB แล้วใช้การ Read, Write file ในการเปลี่ยนแปลงข้อมูล *(ใช้เป็น json file เก็บข้อมูลทั้งหมด เพราะ Project มีขนาดเล็ก จึงไม่จำเป็นที่จะต้องใช้ RDB, NoSQL ให้ยุ่งยาก)*
 # **Run project**
 
 1. Rename file .env.example เป็น .env
 2. Set environment variable ในไฟล์ .env ดังนี้
 * .env
-    * PORT = เลข port ที่ต้องการเปิด server เช่น 3000
-    * HOST = ชื่อ host name ของ server เช่น localhost
-    * TOKEN = token ที่ใช้ส่งข้อความไปยัง Line
+    * PORT = เลข Port ที่ต้องการเปิด Server เช่น 3000
+    * HOST = ชื่อ Host name ของ Server เช่น localhost
+    * TOKEN = Token ที่ใช้ส่งข้อความไปยัง Line ([Create Line Token](https://notify-bot.line.me/my/) แล้วนำ token มาใส่ที่ตัวแปรนี้)
 3. npm i
 4. npm start
 
