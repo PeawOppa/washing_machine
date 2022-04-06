@@ -27,8 +27,14 @@ Dependencies|Description
     * PORT = เลข Port ที่ต้องการเปิด Server เช่น 3000
     * HOST = ชื่อ Host name ของ Server เช่น localhost
     * TOKEN = Token ที่ใช้ส่งข้อความไปยัง Line ([Create Line Token](https://notify-bot.line.me/my/) แล้วนำ token มาใส่ที่ตัวแปรนี้)
-3. npm i
-4. npm start
+3. Run command
+```
+npm i 
+```
+4. Run command
+```
+npm start
+```
 
 # **API**
 
@@ -46,7 +52,7 @@ PUT | /api/washing/insert_coin/:id | หยอดเหรียญใส่เ�
 GET/HEAD | /api/washing/update_time/:id | เปลี่ยนค่าเวลาเครื่องซักผ้า ใช้คำนวณว่าเหลือเวลาอีกเท่าไหร่ที่เครื่องซักผ้าจะทำงานเสร็จ
 GET/HEAD | /api/washing/reset/:id | เปลี่ยนแปลงค่าของเครื่องซักผ้ากลับสู่ Default
 
-\[ API นี้ทำ file กำกับไว้แล้วสามารถ Import file : **API Washing machine.postman_collection.json** ลงใน **POSTMAN** ได้เลย \]
+\[ API นี้ทำ file กำกับไว้แล้วสามารถ Import file : **[API Washing machine.postman_collection.json](https://github.com/suckamiommy/washingmachine/blob/main/API%20Washing%20machine.postman_collection.json)** ลงใน **POSTMAN** ได้เลย \]
 
 ```js
 const washingMachine = (nodeJS) => {
