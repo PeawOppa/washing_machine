@@ -52,7 +52,7 @@ PUT | /api/washing/insert_coin/:id | หยอดเหรียญใส่เ�
 GET/HEAD | /api/washing/update_time/:id | เปลี่ยนค่าเวลาเครื่องซักผ้า ใช้คำนวณว่าเหลือเวลาอีกเท่าไหร่ที่เครื่องซักผ้าจะทำงานเสร็จ
 GET/HEAD | /api/washing/reset/:id | เปลี่ยนแปลงค่าของเครื่องซักผ้ากลับสู่ Default
 
-\[ API นี้ทำ file กำกับไว้แล้วสามารถ Import file : **[API Washing machine.postman_collection.json](https://github.com/suckamiommy/washingmachine/blob/main/API%20Washing%20machine.postman_collection.json)** ลงใน **POSTMAN** ได้เลย \]
+\[ API นี้ทำ file กำกับไว้แล้วสามารถ Import file : **[API Washing machine.postman_collection.json](https://github.com/suckamiommy/washingmachine/blob/main/API%20Washing%20machine.postman_collection.json)** ลงใน **[POSTMAN](https://www.postman.com/downloads/)** ได้เลย \]
 
 ```js
 const washingMachine = (nodeJS) => {
