@@ -32,7 +32,7 @@ cron.schedule('*/10 * * * * *', () => {
                     bearer: process.env.TOKEN,
                 },
                 form: {
-                    message: `${washMachines[i].name}ทำงานใกล้เสร็จแล้ว ไปเอาผ้ากันเถอะ !`
+                    message: `${washMachines[i].name} ทำงานใกล้เสร็จแล้ว ไปเอาผ้ากันเถอะ !`
                 },
             }, (err, httpResponse, body) => {
                 if (err) {

@@ -95,7 +95,7 @@ const updateTime = (req, res) => {
     if(found){
         let dateNow = new Date();
         let start_at = dateNow;
-        let end_at = addHours(dateNow, 1);
+        let end_at = addHours(dateNow, 70);
         
         washMachines.forEach(washMachine => {
             if(washMachine.id === req.params.id){
@@ -137,7 +137,7 @@ const reset = (req, res) => {
 // util function
 const addHours = (date, hours) => {
     const newDate = new Date(date);
-    newDate.setHours(newDate.getHours() + hours);
+    newDate.setSeconds(newDate.getSeconds() + hours);
     return newDate;
 }
 
